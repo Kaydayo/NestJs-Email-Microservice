@@ -21,7 +21,7 @@ async function bootstrap() {
       }
     }
   );
-  app.listen(()=> console.log("app is listening ..."));
+  app.listen().then(()=> console.log("app is listening"));
 }
 bootstrap();
 
