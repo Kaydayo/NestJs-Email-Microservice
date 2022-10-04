@@ -3,6 +3,8 @@ import {MicroserviceOptions, Transport} from "@nestjs/microservices"
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
+
+
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     AppModule,
@@ -10,12 +12,12 @@ async function bootstrap() {
       transport: Transport.KAFKA,
       options: {
         client: {
-          brokers: ["pkc-3w22w.us-central1.gcp.confluent.cloud:9092"],
+          brokers: [process.env.KAFKA_SERVER],
           ssl: true,
           sasl: {
             mechanism: 'plain',
-            username:'624CZI36XY2P3KTC',
-            password:'D4hzZpiFcgLSYmA8ykcPed5TviJQvwdScyxOU7RDig5z+PVVIm/dSTmbURMdDSzK',
+            username: process.env.KAFKA_USERNAME,
+            password: process.env.KAFKA_PASSWORD,
           }
         }
       }
